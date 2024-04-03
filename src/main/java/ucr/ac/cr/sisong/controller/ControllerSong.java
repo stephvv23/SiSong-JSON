@@ -61,10 +61,14 @@ public class ControllerSong implements ActionListener, MouseListener {
 
             case "Edit":
                 System.err.println("Edit");
+                GUISong.setMessage( this.songArray.edit(this.dataPanelSong.getSong()));
+                this.dataPanelSong.clean();
                 break;
 
             case "Delete":
                 System.err.println("Delete");
+                GUISong.setMessage( this.songArray.delete(this.dataPanelSong.getSong().getIdSong()));
+                this.dataPanelSong.clean();
                 break;
 
             case "Report":
