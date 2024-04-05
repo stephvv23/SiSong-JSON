@@ -28,7 +28,7 @@ public class ControllerSong implements ActionListener, MouseListener {
     private Song song;
     private GUIReport guiReport;
 
-    public ControllerSong() {
+    public ControllerSong(SongArray songArray) {
         this.guiSong = new GUISong();
         this.dataPanelSong = this.guiSong.getDataPanelSong();
         this.buttonsPanel = this.guiSong.getButtonsPanel();
@@ -90,7 +90,7 @@ public class ControllerSong implements ActionListener, MouseListener {
 
             case "Exit":
 
-                System.exit(0);
+                guiSong.dispose();
                 break;
 
         }

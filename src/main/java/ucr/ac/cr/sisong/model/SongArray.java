@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public class SongArray {
 
     private ArrayList<Song> listSongs;
+    private ArrayList<Song> listSongsSelected;
 
     public SongArray() {
         this.listSongs = new ArrayList<>();
+        this.listSongsSelected = new ArrayList<>();
     }
 
     public Song search(int idSong) {
@@ -82,6 +84,21 @@ public class SongArray {
         for (int f = 0; f < matrixDataSongs.length; f++) {
             for (int c = 0; c < matrixDataSongs[0].length; c++) {
                 matrixDataSongs[f][c] = this.listSongs.get(f).getData(c);
+            }
+
+        }
+        return matrixDataSongs;
+    }
+
+    public void addSongSelected(Song song){
+        this.listSongsSelected.add(song);
+    }
+    
+    public String[][] getMatrixDataSongsSelected() {
+        String[][] matrixDataSongs = new String[this.listSongsSelected.size()][Song.TBL_LABELS.length];
+        for (int f = 0; f < matrixDataSongs.length; f++) {
+            for (int c = 0; c < matrixDataSongs[0].length; c++) {
+                matrixDataSongs[f][c] = this.listSongsSelected.get(f).getData(c);
             }
 
         }
