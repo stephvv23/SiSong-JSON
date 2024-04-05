@@ -5,8 +5,7 @@
 
 package ucr.ac.cr.sisong;
 
-import ucr.ac.cr.sisong.controller.ControllerArtist;
-import ucr.ac.cr.sisong.controller.ControllerSong;
+import ucr.ac.cr.sisong.controller.ControllerMain;
 
 /**
  *
@@ -15,6 +14,6 @@ import ucr.ac.cr.sisong.controller.ControllerSong;
 public class SISONG {
 
     public static void main(String[] args) {
-        new ControllerSong();
+        new ControllerMain();
     }
 }
