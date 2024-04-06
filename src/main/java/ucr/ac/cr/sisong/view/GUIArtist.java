@@ -45,13 +45,13 @@ public class GUIArtist extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dataPanelArtist1 = new ucr.ac.cr.sisong.view.DataPanelArtist();
         buttonsPanel2 = new ucr.ac.cr.sisong.view.ButtonsPanel();
+        dataPanelArtist1 = new ucr.ac.cr.sisong.view.DataPanelArtist();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(dataPanelArtist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, -1));
+        getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+        getContentPane().add(dataPanelArtist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

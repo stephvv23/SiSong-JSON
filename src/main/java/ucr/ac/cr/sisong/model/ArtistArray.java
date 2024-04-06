@@ -70,12 +70,25 @@ public class ArtistArray {
     }
 
     public String[][] getMatrixArtist() {
-        String[][] matrizArtist = new String[listArtist.size()][Artist.TB_LABELS.length];
-        for (int i = 0; i < listArtist.size(); i++) {
-            matrizArtist[i][0] = listArtist.get(i).getArtistName();
-            matrizArtist[i][1] = listArtist.get(i).getNation();
-            matrizArtist[i][2] = listArtist.get(i).getMusicalGenre();
+        String[][] matrizArtist = new String[this.listArtist.size()][Song.TBL_LABELS.length];
+        for (int f = 0; f < matrizArtist.length; f++) {
+            for (int c = 0; c < matrizArtist[0].length; c++) {
+                matrizArtist[f][c] = this.listArtist.get(f).getData(c);
+            }
+
         }
         return matrizArtist;
     }
+
+    public String[][] getMatrixArtistSongs(Song[] listArtistSongs) {
+        String[][] matrixArtistSongs = new String[listArtistSongs.length][Song.TBL_LABELS.length];
+        for (int f = 0; f < matrixArtistSongs.length; f++) {
+            for (int c = 0; c < matrixArtistSongs[0].length; c++) {
+                matrixArtistSongs[f][c] = this.listArtist.get(f).getData(c);
+            }
+
+        }
+        return matrixArtistSongs;
+    }
+
 }

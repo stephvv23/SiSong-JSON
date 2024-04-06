@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import ucr.ac.cr.sisong.model.Artist;
 import ucr.ac.cr.sisong.model.ArtistArray;
+import ucr.ac.cr.sisong.model.Song;
 import ucr.ac.cr.sisong.view.ButtonsPanel;
 import ucr.ac.cr.sisong.view.DataPanelArtist;
 import ucr.ac.cr.sisong.view.GUIArtist;
@@ -118,9 +119,9 @@ public class ControllerArtist implements ActionListener, MouseListener {
 //    "NAME", "NATION", "MUSICAL GENRE"};
     public void mouseClicked(MouseEvent e) {
 
-        dataPanelArtist.setArtist(new Artist(guiReport.getDataRow()[0],
-                guiReport.getDataRow()[1],
-                guiReport.getDataRow()[2]));
+        Song[] artistSongs = this.artistArray.search(guiReport.getDataRow()[0]).getArtistSongs();
+        this.dataPanelArtist.setTblArtistSongs(artistArray.getMatrixArtistSongs(artistSongs), Artist.TB_LABELS);
+        dataPanelArtist.setArtist(new Artist(guiReport.getDataRow()[0], guiReport.getDataRow()[1],guiReport.getDataRow()[2], artistSongs));
         this.guiReport.dispose();
     }
 
