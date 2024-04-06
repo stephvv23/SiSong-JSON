@@ -34,7 +34,7 @@ public class ControllerSong implements ActionListener, MouseListener {
         this.buttonsPanel = this.guiSong.getButtonsPanel();
         this.buttonsPanel.listen(this);
         this.dataPanelSong.listenCombo(this);
-        this.songArray = new SongArray();
+        this.songArray = songArray;
         this.dataPanelSong.setLbIdSong(this.songArray.getIDdLabel());
         this.dataPanelSong.setCbMusicGenre();
         this.guiSong.setVisible(true);

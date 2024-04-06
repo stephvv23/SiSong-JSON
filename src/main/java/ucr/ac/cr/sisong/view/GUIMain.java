@@ -36,8 +36,8 @@ public class GUIMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jmiExit = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jmiExit = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmiSongs = new javax.swing.JMenuItem();
@@ -46,16 +46,16 @@ public class GUIMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jmiExit.setText("File");
+        jMenu1.setText("File");
 
-        jMenuItem1.setText("Exit");
-        jMenuItem1.setToolTipText("");
-        jmiExit.add(jMenuItem1);
+        jmiExit.setText("Exit");
+        jmiExit.setToolTipText("");
+        jMenu1.add(jmiExit);
 
         jMenuItem2.setText("Credits");
-        jmiExit.add(jMenuItem2);
+        jMenu1.add(jMenuItem2);
 
-        jMenuBar1.add(jmiExit);
+        jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
 
@@ -99,13 +99,13 @@ public class GUIMain extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jmiAlbums;
     private javax.swing.JMenuItem jmiArtist;
-    private javax.swing.JMenu jmiExit;
+    private javax.swing.JMenuItem jmiExit;
     private javax.swing.JMenuItem jmiSongs;
     // End of variables declaration//GEN-END:variables
 }
