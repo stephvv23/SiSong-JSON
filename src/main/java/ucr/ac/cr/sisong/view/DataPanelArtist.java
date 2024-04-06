@@ -6,14 +6,11 @@ package ucr.ac.cr.sisong.view;
 
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import ucr.ac.cr.sisong.model.Artist;
 
 /**
  *
- * @author sivv2
+ * @author Stephanie Venegas
  */
 public class DataPanelArtist extends javax.swing.JPanel {
 
@@ -24,55 +21,38 @@ public class DataPanelArtist extends javax.swing.JPanel {
         initComponents();
     }
 
-    public String getMusicalGenre() {
-        return cbMusicalGenre.getSelectedItem().toString();
+    //String artistName, String musicalGenre, String nation, int id
+    public Artist getArtist() {
+        return new Artist(this.txtNameArtist.getText(),
+                this.cbMusicalGenre.getSelectedItem().toString(),
+                this.cbNation.getSelectedItem().toString());
     }
 
-    public void setMusicalGenre(String musicalGenre) {
-        this.cbMusicalGenre.setSelectedItem(musicalGenre);
-    }
+    public void setArtist(Artist artist) {
+        this.txtNameArtist.setText(String.valueOf((artist.getArtistName())));
+        this.cbMusicalGenre.setSelectedItem(artist.getMusicalGenre());
+        this.cbNation.setSelectedItem(artist.getNation());
+        
 
-    public String getNation() {
-        return cbNation.getSelectedItem().toString();
-    }
-
-    public void setNation(String nation) {
-        this.cbNation.setSelectedItem(nation);
-    }
-
-    public int getIdArtist() {
-        return Integer.parseInt(lbIdArtist.getText());
-    }
-
-    public void setIdArtist(int id) {
-        this.lbIdArtist.setText(Integer.toString(id));
-    }
-
-    public String getNameArtist() {
-        return txtNameArtist.getText();
-    }
-
-    public void setNameArtist(String name) {
-        this.txtNameArtist.setText(name);
     }
 
     public void clean() {
-        this.lbIdArtist.setText("");
+        
         this.txtNameArtist.setText("");
         this.cbMusicalGenre.setSelectedIndex(0);
         this.cbNation.setSelectedIndex(0);
     }
 
-    public void setIDCombo(String[] idList) {
-        this.cbIDArtist.setModel(new DefaultComboBoxModel<>(idList));
+    public void setNameCombo(String[] idList) {
+        this.cbArtistsName.setModel(new DefaultComboBoxModel<>(idList));
     }
 
-    public String getIDCombo() {
-        return this.cbIDArtist.getSelectedItem().toString();
+    public String getNameCombo() {
+        return this.cbArtistsName.getSelectedItem().toString();
     }
 
-    public void listenComboID(ActionListener controller) {
-        this.cbIDArtist.addActionListener(controller);
+    public void listenComboName(ActionListener controller) {
+        this.cbArtistsName.addActionListener(controller);
     }
 
     /**
@@ -91,9 +71,7 @@ public class DataPanelArtist extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNameArtist = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        lbIdArtist = new javax.swing.JLabel();
-        cbIDArtist = new javax.swing.JComboBox<>();
+        cbArtistsName = new javax.swing.JComboBox<>();
         lbBackground = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
@@ -131,20 +109,10 @@ public class DataPanelArtist extends javax.swing.JPanel {
         txtNameArtist.setActionCommand("");
         add(txtNameArtist, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 120, -1));
 
-        jLabel2.setFont(new java.awt.Font("Source Serif Pro Light", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ID");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 30, 20));
-
-        lbIdArtist.setFont(new java.awt.Font("Source Serif Pro Light", 1, 18)); // NOI18N
-        lbIdArtist.setForeground(new java.awt.Color(255, 255, 255));
-        lbIdArtist.setText("0");
-        lbIdArtist.setToolTipText("");
-        add(lbIdArtist, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 40, 20));
-
-        cbIDArtist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Artists id" }));
-        cbIDArtist.setActionCommand("comboIDArtist");
-        add(cbIDArtist, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+        cbArtistsName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ArtistName" }));
+        cbArtistsName.setToolTipText("");
+        cbArtistsName.setActionCommand("comboIDArtist");
+        add(cbArtistsName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
         lbBackground.setFont(new java.awt.Font("Source Serif Pro Light", 1, 18)); // NOI18N
         lbBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ArtistBackground2.jpg"))); // NOI18N
@@ -154,16 +122,14 @@ public class DataPanelArtist extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbIDArtist;
+    private javax.swing.JComboBox<String> cbArtistsName;
     private javax.swing.JComboBox<String> cbMusicalGenre;
     private javax.swing.JComboBox<String> cbNation;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lbBackground;
-    private javax.swing.JLabel lbIdArtist;
     private javax.swing.JTextField txtNameArtist;
     // End of variables declaration//GEN-END:variables
 }

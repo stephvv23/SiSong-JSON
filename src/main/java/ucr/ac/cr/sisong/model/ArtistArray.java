@@ -18,9 +18,9 @@ public class ArtistArray {
         this.listArtist = new ArrayList<>();
     }
 
-    public Artist search(int id) {
+    public Artist search(String name) {
         for (Artist artist : listArtist) {
-            if (artist.getId() == id) {
+            if (artist.getArtistName().equals(name)) {
                 return artist;
             }
         }
@@ -28,12 +28,15 @@ public class ArtistArray {
     }
 
     public String add(Artist artist) {
-        this.listArtist.add(artist);
-        return "Artist added succesfully!";
+        if (this.search(artist.getArtistName()) == null) {
+            listArtist.add(artist);
+            return "Artist succesfuly added";
+        }
+        return "Error adding song.\nId already added";
     }
 
-    public String delete(int id) {
-        if (this.listArtist.remove(this.search(id))) {
+    public String delete(String name) {
+        if (this.listArtist.remove(this.search(name))) {
             return "Artist delete succesfully!";
         } else {
             return "Artist not found";
@@ -42,7 +45,7 @@ public class ArtistArray {
 
     public String edit(Artist artistEdit) {
         for (int i = 0; i < this.listArtist.size(); i++) {
-            if (this.listArtist.get(i).getId() == artistEdit.getId()) {
+            if (this.listArtist.get(i).getArtistName().equalsIgnoreCase(artistEdit.getArtistName())) {
                 this.listArtist.set(i, artistEdit);
                 return "Artist edited succesfully!";
             }
@@ -58,25 +61,20 @@ public class ArtistArray {
         return message;
     }
 
-    public int getIdArtist() {
-        return listArtist.size() +1;
-    }
-
-    public String[] getIDList() {
+    public String[] getNameList() {
         String[] idList = new String[this.listArtist.size()];
         for (int i = 0; i < this.listArtist.size(); i++) {
-            idList[i] = Integer.toString(listArtist.get(i).getId());
+            idList[i] = listArtist.get(i).getArtistName();
         }
         return idList;
     }
-    
-    public String[][] getMatrixArtist(){
+
+    public String[][] getMatrixArtist() {
         String[][] matrizArtist = new String[listArtist.size()][Artist.TB_LABELS.length];
-        for(int i = 0; i < listArtist.size(); i++) {
-            matrizArtist[i][0] = Integer.toString(listArtist.get(i).getId());
-            matrizArtist[i][1] = listArtist.get(i).getArtistName();
-            matrizArtist[i][2] = listArtist.get(i).getNation();
-            matrizArtist[i][3] = listArtist.get(i).getMusicalGenre();
+        for (int i = 0; i < listArtist.size(); i++) {
+            matrizArtist[i][0] = listArtist.get(i).getArtistName();
+            matrizArtist[i][1] = listArtist.get(i).getNation();
+            matrizArtist[i][2] = listArtist.get(i).getMusicalGenre();
         }
         return matrizArtist;
     }

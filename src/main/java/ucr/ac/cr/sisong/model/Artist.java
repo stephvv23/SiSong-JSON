@@ -12,17 +12,16 @@ public class Artist {
     private String artistName;
     private String musicalGenre;
     private String nation;
-    private int id;
-    public static final String[] TB_LABELS = {"ID", "NAME", "NATION", "MUSICAL GENRE"};
+    public static final String[] TB_LABELS = {"NAME", "NATION", "MUSICAL GENRE"};
 
     public Artist() {
     }
 
-    public Artist(String artistName, String musicalGenre, String nation, int id) {
+    public Artist(String artistName, String musicalGenre, String nation) {
         this.artistName = artistName;
         this.musicalGenre = musicalGenre;
         this.nation = nation;
-        this.id = id;
+      
     }
 
     public String getArtistName() {
@@ -49,17 +48,11 @@ public class Artist {
         this.nation = nation;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+   
 
     @Override
     public String toString() {
-        return "Artist " + "artistName=" + artistName + ", musicalGenre=" + musicalGenre + ", nation=" + nation + ", id=" + id;
+        return "Artist " + "artistName=" + artistName + ", musicalGenre=" + musicalGenre + ", nation=" + nation  ;
     }
 
     
