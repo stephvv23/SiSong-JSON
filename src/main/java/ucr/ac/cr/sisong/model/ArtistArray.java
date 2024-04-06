@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public class ArtistArray {
 
     private ArrayList<Artist> listArtist;
+    private ArrayList<Song> artistListSongArray;
 
     public ArtistArray() {
         this.listArtist = new ArrayList<>();
+        this.artistListSongArray = new ArrayList<>();
     }
 
     public Artist search(String name) {
@@ -70,7 +72,7 @@ public class ArtistArray {
     }
 
     public String[][] getMatrixArtist() {
-        String[][] matrizArtist = new String[this.listArtist.size()][Song.TBL_LABELS.length];
+        String[][] matrizArtist = new String[this.listArtist.size()][Artist.TB_LABELS.length];
         for (int f = 0; f < matrizArtist.length; f++) {
             for (int c = 0; c < matrizArtist[0].length; c++) {
                 matrizArtist[f][c] = this.listArtist.get(f).getData(c);
@@ -80,11 +82,30 @@ public class ArtistArray {
         return matrizArtist;
     }
 
-    public String[][] getMatrixArtistSongs(Song[] listArtistSongs) {
-        String[][] matrixArtistSongs = new String[listArtistSongs.length][Song.TBL_LABELS.length];
+    public void addSongsSelected(Song song) {
+        this.artistListSongArray.add(song);
+    }
+    
+    public void cleanListSongsSelected(){
+        artistListSongArray.clear();
+    }
+
+    public String[][] getMatrixArtistSongs() {
+        String[][] matrixArtistSongs = new String[artistListSongArray.size()][Song.TBL_LABELS.length];
         for (int f = 0; f < matrixArtistSongs.length; f++) {
             for (int c = 0; c < matrixArtistSongs[0].length; c++) {
-                matrixArtistSongs[f][c] = this.listArtist.get(f).getData(c);
+                matrixArtistSongs[f][c] = this.artistListSongArray.get(f).getData(c);
+            }
+
+        }
+        return matrixArtistSongs;
+    }
+    
+    public String[][] getMatrixArtistSongsAlreadyExist(Song[] listSongs) {
+        String[][] matrixArtistSongs = new String[listSongs.length][Song.TBL_LABELS.length];
+        for (int f = 0; f < matrixArtistSongs.length; f++) {
+            for (int c = 0; c < matrixArtistSongs[0].length; c++) {
+                matrixArtistSongs[f][c] = listSongs[f].getData(c);
             }
 
         }

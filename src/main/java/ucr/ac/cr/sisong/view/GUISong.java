@@ -44,7 +44,6 @@ public class GUISong extends javax.swing.JFrame {
         dataPanelSong1 = new ucr.ac.cr.sisong.view.DataPanelSong();
         buttonsPanel2 = new ucr.ac.cr.sisong.view.ButtonsPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(dataPanelSong1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 389));
         getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 380, 490, 100));

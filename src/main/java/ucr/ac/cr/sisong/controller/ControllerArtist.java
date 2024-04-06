@@ -8,9 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import ucr.ac.cr.sisong.model.Artist;
 import ucr.ac.cr.sisong.model.ArtistArray;
 import ucr.ac.cr.sisong.model.Song;
+import ucr.ac.cr.sisong.model.SongArray;
 import ucr.ac.cr.sisong.view.ButtonsPanel;
 import ucr.ac.cr.sisong.view.DataPanelArtist;
 import ucr.ac.cr.sisong.view.GUIArtist;
@@ -28,18 +30,23 @@ public class ControllerArtist implements ActionListener, MouseListener {
     private ButtonsPanel buttonsPanel;
     private Artist artist;
     private ArtistArray artistArray;
+    private SongArray songArray;
     private GUIReport guiReport;
 
-    public ControllerArtist(ArtistArray artistArray) {
+    public ControllerArtist(ArtistArray artistArray, SongArray songArray) {
         this.guiArtist = new GUIArtist();
         this.dataPanelArtist = this.guiArtist.getDataPanelArtist();
         this.dataPanelArtist.setCbNation();
+        this.dataPanelArtist.listenMouse(this);
+        this.songArray = songArray;
+        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
         this.guiReport = new GUIReport();
         this.guiReport.listenMouse(this);
         this.buttonsPanel = this.guiArtist.getButtonsPanel();
         this.buttonsPanel.listen(this);
         this.dataPanelArtist.listenComboName(this);
         this.artistArray = artistArray;
+
         this.guiArtist.setVisible(true);
     }
 
@@ -53,6 +60,8 @@ public class ControllerArtist implements ActionListener, MouseListener {
                         GUISong.setMessage(this.artistArray.add(artist));
                         this.dataPanelArtist.clean();
                         this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
+                        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
+                        this.artistArray.cleanListSongsSelected();
                     }
                 }
 
@@ -65,6 +74,7 @@ public class ControllerArtist implements ActionListener, MouseListener {
                     dataPanelArtist.clean();
                     this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
                 }
+                this.artistArray.cleanListSongsSelected();
                 break;
 
             case "Report":
@@ -88,11 +98,12 @@ public class ControllerArtist implements ActionListener, MouseListener {
                 if (!dataPanelArtist.getNameCombo().equalsIgnoreCase("Artist name")) {
                     Artist auxArtist = this.artistArray.search(dataPanelArtist.getNameCombo());
                     dataPanelArtist.setArtist(auxArtist);
+                    this.dataPanelArtist.setTblArtistSongs(this.artistArray.getMatrixArtistSongsAlreadyExist(auxArtist.getArtistSongs()), Song.TBL_LABELS);
                 }
                 break;
 
             case "Exit":
-                System.exit(0);
+                guiArtist.setVisible(false);
                 break;
 
         }
@@ -118,10 +129,12 @@ public class ControllerArtist implements ActionListener, MouseListener {
     @Override
 //    "NAME", "NATION", "MUSICAL GENRE"};
     public void mouseClicked(MouseEvent e) {
-
-        Song[] artistSongs = this.artistArray.search(guiReport.getDataRow()[0]).getArtistSongs();
-        this.dataPanelArtist.setTblArtistSongs(artistArray.getMatrixArtistSongs(artistSongs), Artist.TB_LABELS);
-        dataPanelArtist.setArtist(new Artist(guiReport.getDataRow()[0], guiReport.getDataRow()[1],guiReport.getDataRow()[2], artistSongs));
+        this.artistArray.addSongsSelected(new Song(Integer.parseInt(this.dataPanelArtist.getDataRow()[0]),
+                this.dataPanelArtist.getDataRow()[1],
+                Double.parseDouble(this.dataPanelArtist.getDataRow()[2]),
+                this.dataPanelArtist.getDataRow()[3],
+                Integer.parseInt(this.dataPanelArtist.getDataRow()[4])));
+        this.dataPanelArtist.setTblArtistSongs(artistArray.getMatrixArtistSongs(), Song.TBL_LABELS);
         this.guiReport.dispose();
     }
 

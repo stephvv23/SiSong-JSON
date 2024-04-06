@@ -90,7 +90,7 @@ public class ControllerSong implements ActionListener, MouseListener {
 
             case "Exit":
 
-                guiSong.dispose();
+                guiSong.setVisible(false);
                 break;
 
         }

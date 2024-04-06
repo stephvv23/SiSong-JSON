@@ -40,7 +40,7 @@ public class ControllerMain implements ActionListener {
 
                 break;
             case "Artist":
-                this.controllerArtist = new ControllerArtist(artistArray);
+                this.controllerArtist = new ControllerArtist(artistArray, songArray);
                 break;
             case "Songs":
                 this.controllerSong = new ControllerSong(songArray);

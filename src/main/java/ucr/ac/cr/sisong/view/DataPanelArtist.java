@@ -35,26 +35,23 @@ public class DataPanelArtist extends javax.swing.JPanel {
     public Song[] getSongsList() {
         Song[] listSongs = new Song[this.tblSongsArtist.getRowCount()];
         for (int f = 0; f < tblSongsArtist.getRowCount(); f++) {
-            for (int i = 0; i < tblSongsArtist.getColumnCount(); i++) {
-                int id = Integer.parseInt(this.tblSongsArtist.getValueAt(f, i).toString());
-                String title = this.tblSongsArtist.getValueAt(f, i).toString();
-                double duration = Double.parseDouble(this.tblSongsArtist.getValueAt(f, i).toString());
-                String musicGenre = this.tblSongsArtist.getValueAt(f, i).toString();
-                int year = Integer.parseInt(this.tblSongsArtist.getValueAt(f, i).toString());
+            int id = Integer.parseInt(this.tblSongsArtist.getValueAt(f, 0).toString());
+            String title = this.tblSongsArtist.getValueAt(f, 1).toString();
+            double duration = Double.parseDouble(this.tblSongsArtist.getValueAt(f, 2).toString());
+            String musicGenre = this.tblSongsArtist.getValueAt(f, 3).toString();
+            int year = Integer.parseInt(this.tblSongsArtist.getValueAt(f, 4).toString());
 
-                listSongs[i] = new Song(id, title, duration, musicGenre, year);
-            }
-
+            listSongs[f] = new Song(id, title, duration, musicGenre, year);
         }
 
         return listSongs;
     }
-
+    
     public String[] getDataRow() {
-        String[] dataSong = new String[this.tblSongsArtist.getColumnCount()];
-        int selectedRow = this.tblSongsArtist.getSelectedRow();
+        String[] dataSong = new String[this.tblSongsRegistered2.getColumnCount()];
+        int selectedRow = this.tblSongsRegistered2.getSelectedRow();
         for (int i = 0; i < dataSong.length; i++) {
-            dataSong[i] = this.tblSongsArtist.getValueAt(selectedRow, i).toString();
+            dataSong[i] = this.tblSongsRegistered2.getValueAt(selectedRow, i).toString();
         }
         return dataSong;
     }
@@ -70,6 +67,8 @@ public class DataPanelArtist extends javax.swing.JPanel {
         this.txtNameArtist.setText("");
         this.cbMusicalGenre.setSelectedIndex(0);
         this.cbNation.setSelectedIndex(0);
+        this.tblSongsArtist.setModel(new DefaultTableModel());
+
     }
 
     public void setNameCombo(String[] idList) {

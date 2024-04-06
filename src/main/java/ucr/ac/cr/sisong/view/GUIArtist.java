@@ -25,7 +25,7 @@ public class GUIArtist extends javax.swing.JFrame {
     }
 
     public DataPanelArtist getDataPanelArtist() {
-        return dataPanelArtist1;
+        return dataPanelArtist2;
     }
 
     
@@ -46,12 +46,11 @@ public class GUIArtist extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonsPanel2 = new ucr.ac.cr.sisong.view.ButtonsPanel();
-        dataPanelArtist1 = new ucr.ac.cr.sisong.view.DataPanelArtist();
+        dataPanelArtist2 = new ucr.ac.cr.sisong.view.DataPanelArtist();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
-        getContentPane().add(dataPanelArtist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 660));
+        getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 370, 90));
+        getContentPane().add(dataPanelArtist2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -60,6 +59,6 @@ public class GUIArtist extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ucr.ac.cr.sisong.view.ButtonsPanel buttonsPanel2;
-    private ucr.ac.cr.sisong.view.DataPanelArtist dataPanelArtist1;
+    private ucr.ac.cr.sisong.view.DataPanelArtist dataPanelArtist2;
     // End of variables declaration//GEN-END:variables
 }
