@@ -20,7 +20,7 @@ public class ArtistArray {
 
     public Artist search(String name) {
         for (Artist artist : listArtist) {
-            if (artist.getArtistName().equals(name)) {
+            if (artist.getArtistName().equalsIgnoreCase(name)) {
                 return artist;
             }
         }

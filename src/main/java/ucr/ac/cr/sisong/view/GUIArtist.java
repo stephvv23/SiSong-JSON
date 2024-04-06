@@ -4,6 +4,7 @@
  */
 package ucr.ac.cr.sisong.view;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +28,7 @@ public class GUIArtist extends javax.swing.JFrame {
         return dataPanelArtist1;
     }
 
+    
   
     
     //ojo es el mismo de GUISong

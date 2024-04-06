@@ -29,6 +29,7 @@ public class ControllerArtist implements ActionListener {
     public ControllerArtist(ArtistArray artistArray) {
         this.guiArtist = new GUIArtist();
         this.dataPanelArtist = this.guiArtist.getDataPanelArtist();
+        this.dataPanelArtist.setCbNation();
         this.buttonsPanel = this.guiArtist.getButtonsPanel();
         this.buttonsPanel.listen(this);
         this.dataPanelArtist.listenComboName(this);
@@ -45,47 +46,49 @@ public class ControllerArtist implements ActionListener {
                     if (this.validationData(artist)) {
                         GUISong.setMessage(this.artistArray.add(artist));
                         this.dataPanelArtist.clean();
+                        this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
                     }
                 }
 
                 break;
-                
+
             case "Edit":
                 if (validationData(dataPanelArtist.getArtist())) {
                     this.guiArtist.setMessage(this.artistArray.edit(dataPanelArtist.getArtist()));
                     dataPanelArtist.setNameCombo(artistArray.getNameList());
                     dataPanelArtist.clean();
+                    this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
                 }
                 break;
-                
+
             case "Report":
                 FrTableDataArtist tableArtist = new FrTableDataArtist();
                 tableArtist.setTableArtist(artistArray.getMatrixArtist(), Artist.TB_LABELS);
                 tableArtist.setVisible(true);
                 break;
-                
+
             case "Delete":
                 if (validationData(dataPanelArtist.getArtist())) {
                     this.guiArtist.setMessage(this.artistArray.delete(dataPanelArtist.getArtist().getArtistName()));
-
+                    this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
                     dataPanelArtist.clean();
 
                 }
 
                 break;
-                
-            case "comboNameArtist":
-                Artist auxArtist = this.artistArray.search(dataPanelArtist.getNameCombo());
-                if (auxArtist != null) {
+
+            case "cbNameArtist":
+
+                if (!dataPanelArtist.getNameCombo().equalsIgnoreCase("Artist name")) {
+                    Artist auxArtist = this.artistArray.search(dataPanelArtist.getNameCombo());
                     dataPanelArtist.setArtist(auxArtist);
                 }
-
                 break;
-                
+
             case "Exit":
                 System.exit(0);
                 break;
-                
+
         }
     }
 

@@ -32,12 +32,11 @@ public class DataPanelArtist extends javax.swing.JPanel {
         this.txtNameArtist.setText(String.valueOf((artist.getArtistName())));
         this.cbMusicalGenre.setSelectedItem(artist.getMusicalGenre());
         this.cbNation.setSelectedItem(artist.getNation());
-        
 
     }
 
     public void clean() {
-        
+
         this.txtNameArtist.setText("");
         this.cbMusicalGenre.setSelectedIndex(0);
         this.cbNation.setSelectedIndex(0);
@@ -53,6 +52,42 @@ public class DataPanelArtist extends javax.swing.JPanel {
 
     public void listenComboName(ActionListener controller) {
         this.cbArtistsName.addActionListener(controller);
+    }
+
+    public void setCbNation() {
+        this.cbNation.setModel(new DefaultComboBoxModel<>(new String[]{
+            "Argentina",
+            "Bolivia",
+            "Brazil",
+            "Canada",
+            "Chile",
+            "Colombia",
+            "Costa Rica",
+            "Cuba",
+            "Dominican Republic",
+            "Ecuador",
+            "El Salvador",
+            "Guatemala",
+            "Haiti",
+            "Honduras",
+            "Jamaica",
+            "Mexico",
+            "Nicaragua",
+            "Panama",
+            "Paraguay",
+            "Peru",
+            "United States",
+            "Uruguay",
+            "Venezuela"
+        }));
+    }
+    
+    public void setCbMusicGenre(){
+        this.cbMusicalGenre.setModel(new DefaultComboBoxModel<>(new String[] {"Selected option","Pop", "Rock", "Metal", "Regueton", "Salsa", "Cumbia", "Clasica", "Hip-Hop", "Jazz", "Bachata", "Merengue"}));
+    }
+    
+    public void setCbNameArtist(String[] vectorNames){
+        this.cbArtistsName.setModel(new DefaultComboBoxModel<>(vectorNames));
     }
 
     /**
@@ -109,9 +144,9 @@ public class DataPanelArtist extends javax.swing.JPanel {
         txtNameArtist.setActionCommand("");
         add(txtNameArtist, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 120, -1));
 
-        cbArtistsName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ArtistName" }));
+        cbArtistsName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Artist Name" }));
         cbArtistsName.setToolTipText("");
-        cbArtistsName.setActionCommand("comboIDArtist");
+        cbArtistsName.setActionCommand("cbNameArtist");
         add(cbArtistsName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
         lbBackground.setFont(new java.awt.Font("Source Serif Pro Light", 1, 18)); // NOI18N
