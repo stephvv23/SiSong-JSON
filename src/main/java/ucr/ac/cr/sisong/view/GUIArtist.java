@@ -48,7 +48,7 @@ public class GUIArtist extends javax.swing.JFrame {
         dataPanelArtist1 = new ucr.ac.cr.sisong.view.DataPanelArtist();
         buttonsPanel2 = new ucr.ac.cr.sisong.view.ButtonsPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(dataPanelArtist1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, -1));
