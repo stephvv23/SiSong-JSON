@@ -34,6 +34,12 @@ public class Artist {
         return "";
     }
 
+    public Artist(String artistName, String musicalGenre, String nation) {
+        this.artistName = artistName;
+        this.musicalGenre = musicalGenre;
+        this.nation = nation;
+    }
+
     public Artist(String artistName, String musicalGenre, String nation, Song[] artistSongs) {
         this.artistName = artistName;
         this.musicalGenre = musicalGenre;

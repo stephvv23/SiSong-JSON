@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import ucr.ac.cr.sisong.model.Artist;
-import ucr.ac.cr.sisong.model.Song;
 
 /**
  *
@@ -28,24 +27,24 @@ public class DataPanelArtist extends javax.swing.JPanel {
     public Artist getArtist() {
         return new Artist(this.txtNameArtist.getText(),
                 this.cbMusicalGenre.getSelectedItem().toString(),
-                this.cbNation.getSelectedItem().toString(), getSongsList());
+                this.cbNation.getSelectedItem().toString());
     }
 
-//    "ID", "Title", "Duration", "Music genre", "Release year"
-    public Song[] getSongsList() {
-        Song[] listSongs = new Song[this.tblSongsArtist.getRowCount()];
-        for (int f = 0; f < tblSongsArtist.getRowCount(); f++) {
-            int id = Integer.parseInt(this.tblSongsArtist.getValueAt(f, 0).toString());
-            String title = this.tblSongsArtist.getValueAt(f, 1).toString();
-            double duration = Double.parseDouble(this.tblSongsArtist.getValueAt(f, 2).toString());
-            String musicGenre = this.tblSongsArtist.getValueAt(f, 3).toString();
-            int year = Integer.parseInt(this.tblSongsArtist.getValueAt(f, 4).toString());
-
-            listSongs[f] = new Song(id, title, duration, musicGenre, year);
-        }
-
-        return listSongs;
-    }
+////    "ID", "Title", "Duration", "Music genre", "Release year"
+//    public Song[] getSongsList() {
+//        Song[] listSongs = new Song[this.tblSongsArtist.getRowCount()];
+//        for (int f = 0; f < tblSongsArtist.getRowCount(); f++) {
+//            int id = Integer.parseInt(this.tblSongsArtist.getValueAt(f, 0).toString());
+//            String title = this.tblSongsArtist.getValueAt(f, 1).toString();
+//            double duration = Double.parseDouble(this.tblSongsArtist.getValueAt(f, 2).toString());
+//            String musicGenre = this.tblSongsArtist.getValueAt(f, 3).toString();
+//            int year = Integer.parseInt(this.tblSongsArtist.getValueAt(f, 4).toString());
+//
+//            listSongs[f] = new Song(id, title, duration, musicGenre, year);
+//        }
+//
+//        return listSongs;
+//    }
     
     public String[] getDataRow() {
         String[] dataSong = new String[this.tblSongsRegistered2.getColumnCount()];

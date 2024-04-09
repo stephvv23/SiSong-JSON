@@ -90,8 +90,25 @@ public class SongArray {
         return matrixDataSongs;
     }
 
-    public void addSongSelected(Song song){
-        this.listSongsSelected.add(song);
+    public boolean searchSongSelected(Song song) {
+        for (int i = 0; i < listSongsSelected.size(); i++) {
+            if (song.getIdSong() == listSongsSelected.get(i).getIdSong()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addSongSelected(Song song) {
+        if (searchSongSelected(song) == false) {
+            this.listSongsSelected.add(song);
+        }
+    }
+
+    public void deleteSongSelected(int index) {
+
+        this.listSongsSelected.remove(index);
+
     }
     
     public String[][] getMatrixDataSongsSelected() {
@@ -105,17 +122,4 @@ public class SongArray {
         return matrixDataSongs;
     }
 
-    //Metodo que mi novio guapo me enseño*******
-//    public String[][] getMatrixDataSongs() {
-//        String[][] matrixDataSongs = new String[this.listSongs.size()][Song.TBL_LABELS.length];
-//        for (int i = 0; i < this.listSongs.size(); i++) {
-//            matrixDataSongs[i][0] = Integer.toString(this.listSongs.get(i).getIdSong());
-//            matrixDataSongs[i][1] = this.listSongs.get(i).getTitle();
-//            matrixDataSongs[i][2] = ("" + this.listSongs.get(i).getTime());
-//            matrixDataSongs[i][3] = this.listSongs.get(i).getMusicGenre();
-//            matrixDataSongs[i][4] = String.valueOf(this.listSongs.get(i).getReleaseYear());
-//
-//        }
-//        return matrixDataSongs;
-//    }
 }

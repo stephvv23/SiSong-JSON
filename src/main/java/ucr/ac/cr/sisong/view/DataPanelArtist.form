@@ -410,7 +410,6 @@
                 <Column editable="true" title="Title 3" type="java.lang.Object"/>
               </Table>
             </Property>
-            <Property name="columnSelectionAllowed" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

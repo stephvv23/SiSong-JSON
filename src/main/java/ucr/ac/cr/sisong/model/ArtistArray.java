@@ -13,11 +13,11 @@ import java.util.ArrayList;
 public class ArtistArray {
 
     private ArrayList<Artist> listArtist;
-    private ArrayList<Song> artistListSongArray;
+    private ArrayList<Artist> listArtistToAlbum;
 
     public ArtistArray() {
         this.listArtist = new ArrayList<>();
-        this.artistListSongArray = new ArrayList<>();
+        this.listArtistToAlbum = new ArrayList<>();
     }
 
     public Artist search(String name) {
@@ -82,34 +82,43 @@ public class ArtistArray {
         return matrizArtist;
     }
 
-    public void addSongsSelected(Song song) {
-        this.artistListSongArray.add(song);
-    }
-    
-    public void cleanListSongsSelected(){
-        artistListSongArray.clear();
+    //***************************************************************
+    public boolean searchArtistSelected(Artist artist) {
+        for (int i = 0; i < listArtistToAlbum.size(); i++) {
+            if (artist.getArtistName().equals(listArtistToAlbum.get(i).getArtistName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public String[][] getMatrixArtistSongs() {
-        String[][] matrixArtistSongs = new String[artistListSongArray.size()][Song.TBL_LABELS.length];
-        for (int f = 0; f < matrixArtistSongs.length; f++) {
-            for (int c = 0; c < matrixArtistSongs[0].length; c++) {
-                matrixArtistSongs[f][c] = this.artistListSongArray.get(f).getData(c);
+    public void addArtistSelected(Artist artist) {
+        if (searchArtistSelected(artist) == false) {
+            this.listArtistToAlbum.add(artist);
+        }
+    }
+
+    public void deleteArtistSelected(int index) {
+
+        this.listArtistToAlbum.remove(index);
+
+    }
+
+    public void cleanListArtistSelected() {
+        listArtistToAlbum.clear();
+    }
+
+    public String[][] getMatrixArtistToAlbum() {
+        String[][] matrixArtistAlbum = new String[listArtistToAlbum.size()][Artist.TB_LABELS.length];
+
+        for (int f = 0; f < matrixArtistAlbum.length; f++) {
+            for (int c = 0; c < matrixArtistAlbum[0].length; c++) {
+                matrixArtistAlbum[f][c] = this.listArtistToAlbum.get(f).getData(c);
             }
 
         }
-        return matrixArtistSongs;
-    }
-    
-    public String[][] getMatrixArtistSongsAlreadyExist(Song[] listSongs) {
-        String[][] matrixArtistSongs = new String[listSongs.length][Song.TBL_LABELS.length];
-        for (int f = 0; f < matrixArtistSongs.length; f++) {
-            for (int c = 0; c < matrixArtistSongs[0].length; c++) {
-                matrixArtistSongs[f][c] = listSongs[f].getData(c);
-            }
+        return matrixArtistAlbum;
 
-        }
-        return matrixArtistSongs;
     }
 
 }

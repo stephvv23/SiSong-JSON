@@ -30,16 +30,15 @@ public class ControllerArtist implements ActionListener, MouseListener {
     private ButtonsPanel buttonsPanel;
     private Artist artist;
     private ArtistArray artistArray;
-    private SongArray songArray;
     private GUIReport guiReport;
 
-    public ControllerArtist(ArtistArray artistArray, SongArray songArray) {
+    public ControllerArtist(ArtistArray artistArray) {
         this.guiArtist = new GUIArtist();
         this.dataPanelArtist = this.guiArtist.getDataPanelArtist();
         this.dataPanelArtist.setCbNation();
         this.dataPanelArtist.listenMouse(this);
-        this.songArray = songArray;
-        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
+//        this.songArray = songArray;
+//        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
         this.guiReport = new GUIReport();
         this.guiReport.listenMouse(this);
         this.buttonsPanel = this.guiArtist.getButtonsPanel();
@@ -60,8 +59,8 @@ public class ControllerArtist implements ActionListener, MouseListener {
                         GUISong.setMessage(this.artistArray.add(artist));
                         this.dataPanelArtist.clean();
                         this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
-                        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
-                        this.artistArray.cleanListSongsSelected();
+//                        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
+//                        this.artistArray.cleanListSongsSelected();
                     }
                 }
 
@@ -74,7 +73,7 @@ public class ControllerArtist implements ActionListener, MouseListener {
                     dataPanelArtist.clean();
                     this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
                 }
-                this.artistArray.cleanListSongsSelected();
+//                this.artistArray.cleanListSongsSelected();
                 break;
 
             case "Report":
@@ -98,7 +97,7 @@ public class ControllerArtist implements ActionListener, MouseListener {
                 if (!dataPanelArtist.getNameCombo().equalsIgnoreCase("Artist name")) {
                     Artist auxArtist = this.artistArray.search(dataPanelArtist.getNameCombo());
                     dataPanelArtist.setArtist(auxArtist);
-                    this.dataPanelArtist.setTblArtistSongs(this.artistArray.getMatrixArtistSongsAlreadyExist(auxArtist.getArtistSongs()), Song.TBL_LABELS);
+//                    this.dataPanelArtist.setTblArtistSongs(this.artistArray.getMatrixArtistSongsAlreadyExist(auxArtist.getArtistSongs()), Song.TBL_LABELS);
                 }
                 break;
 
@@ -129,13 +128,13 @@ public class ControllerArtist implements ActionListener, MouseListener {
     @Override
 //    "NAME", "NATION", "MUSICAL GENRE"};
     public void mouseClicked(MouseEvent e) {
-        this.artistArray.addSongsSelected(new Song(Integer.parseInt(this.dataPanelArtist.getDataRow()[0]),
-                this.dataPanelArtist.getDataRow()[1],
-                Double.parseDouble(this.dataPanelArtist.getDataRow()[2]),
-                this.dataPanelArtist.getDataRow()[3],
-                Integer.parseInt(this.dataPanelArtist.getDataRow()[4])));
-        this.dataPanelArtist.setTblArtistSongs(artistArray.getMatrixArtistSongs(), Song.TBL_LABELS);
-        this.guiReport.dispose();
+//        this.artistArray.addSongsSelected(new Song(Integer.parseInt(this.dataPanelArtist.getDataRow()[0]),
+//                this.dataPanelArtist.getDataRow()[1],
+//                Double.parseDouble(this.dataPanelArtist.getDataRow()[2]),
+//                this.dataPanelArtist.getDataRow()[3],
+//                Integer.parseInt(this.dataPanelArtist.getDataRow()[4])));
+//        this.dataPanelArtist.setTblArtistSongs(artistArray.getMatrixArtistSongs(), Song.TBL_LABELS);
+//        this.guiReport.dispose();
     }
 
     @Override
