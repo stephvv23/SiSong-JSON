@@ -6,8 +6,6 @@ package ucr.ac.cr.sisong.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import ucr.ac.cr.sisong.model.Artist;
 import ucr.ac.cr.sisong.model.ArtistArray;
@@ -23,7 +21,7 @@ import ucr.ac.cr.sisong.view.GUISong;
  *
  * @author sivv2
  */
-public class ControllerArtist implements ActionListener, MouseListener {
+public class ControllerArtist implements ActionListener {
 
     private GUIArtist guiArtist;
     private DataPanelArtist dataPanelArtist;
@@ -36,11 +34,11 @@ public class ControllerArtist implements ActionListener, MouseListener {
         this.guiArtist = new GUIArtist();
         this.dataPanelArtist = this.guiArtist.getDataPanelArtist();
         this.dataPanelArtist.setCbNation();
-        this.dataPanelArtist.listenMouse(this);
+        
 //        this.songArray = songArray;
 //        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
         this.guiReport = new GUIReport();
-        this.guiReport.listenMouse(this);
+        
         this.buttonsPanel = this.guiArtist.getButtonsPanel();
         this.buttonsPanel.listen(this);
         this.dataPanelArtist.listenComboName(this);
@@ -123,33 +121,5 @@ public class ControllerArtist implements ActionListener, MouseListener {
         }
 
         return true;
-    }
-
-    @Override
-//    "NAME", "NATION", "MUSICAL GENRE"};
-    public void mouseClicked(MouseEvent e) {
-//        this.artistArray.addSongsSelected(new Song(Integer.parseInt(this.dataPanelArtist.getDataRow()[0]),
-//                this.dataPanelArtist.getDataRow()[1],
-//                Double.parseDouble(this.dataPanelArtist.getDataRow()[2]),
-//                this.dataPanelArtist.getDataRow()[3],
-//                Integer.parseInt(this.dataPanelArtist.getDataRow()[4])));
-//        this.dataPanelArtist.setTblArtistSongs(artistArray.getMatrixArtistSongs(), Song.TBL_LABELS);
-//        this.guiReport.dispose();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 }

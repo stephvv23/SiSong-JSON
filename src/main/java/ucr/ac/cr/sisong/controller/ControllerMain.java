@@ -6,9 +6,11 @@ package ucr.ac.cr.sisong.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import ucr.ac.cr.sisong.model.AlbumArray;
 import ucr.ac.cr.sisong.model.ArtistArray;
 import ucr.ac.cr.sisong.model.SongArray;
 import ucr.ac.cr.sisong.view.GUIMain;
+import ucr.ac.cr.sisong.view.GUIReportAlbum;
 
 /**
  *
@@ -17,16 +19,20 @@ import ucr.ac.cr.sisong.view.GUIMain;
 public class ControllerMain implements ActionListener {
 
     private GUIMain guiMain;
+    private GUIReportAlbum guiReportAlbum;
     private ControllerSong controllerSong;
     private SongArray songArray;
     private ArtistArray artistArray;
     private ControllerArtist controllerArtist;
     private ControllerAlbum controllerALbum;
+    private ControllerReportAlbum controllerReportAlbum;
+    private AlbumArray albumArray;
 
     public ControllerMain() {
         this.guiMain = new GUIMain();//Crear la instancia
         this.guiMain.listen(this);//Hacer escuchar los botones
         this.songArray = new SongArray();
+        this.albumArray = new AlbumArray();
         this.artistArray = new ArtistArray();
         this.guiMain.setVisible(true);//Hacer visible la ventana
 
@@ -47,7 +53,10 @@ public class ControllerMain implements ActionListener {
 
                 break;
             case "Albums":
-                this.controllerALbum = new ControllerAlbum(songArray, artistArray);
+                this.controllerALbum = new ControllerAlbum(songArray, artistArray, albumArray);
+                break;
+            case "Album report":
+                this.controllerReportAlbum = new ControllerReportAlbum(albumArray);
                 break;
 
         }

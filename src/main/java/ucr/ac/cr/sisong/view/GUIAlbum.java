@@ -4,8 +4,14 @@
  */
 package ucr.ac.cr.sisong.view;
 
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import ucr.ac.cr.sisong.model.Album;
+import ucr.ac.cr.sisong.model.Artist;
+import ucr.ac.cr.sisong.model.Song;
 
 /**
  * //
@@ -14,38 +20,68 @@ import javax.swing.table.DefaultTableModel;
  * @author Stephanie
  */
 public class GUIAlbum extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form GUIAlbum
      */
     public GUIAlbum() {
         initComponents();
+        
     }
 
-    public String getTableRegisteredSongs() {
-        return this.tblRegisteredSongs.toString();
+    //mETODOS PARA OBTENER LOS NOMBRES
+    public JTable getTableRegisteredSongs() {
+        return this.tblRegisteredSongs;
     }
 
-    public String getTableSongToAlbum() {
-        return this.tblSongToAlbum.toString();
+    public JTable getTableSongToAlbum() {
+        return this.tblSongToAlbum;
     }
 
-    public String getTableRegisteredArtist() {
-        return this.tblRegisteredArtist.toString();
+    public JTable getTableRegisteredArtist() {
+        return this.tblRegisteredArtist;
     }
 
-    public String getTableArtistToAlbum() {
-        return this.tblArtistToAlbum.toString();
+    public JTable getTableArtistToAlbum() {
+        return this.tblArtistToAlbum;
     }
 
+    //METODOS PARA OBTENER LA FILA SELECCIONADA DE UNA TABLA
     public int getSelectedRowSong() {
-        return this.tblSongToAlbum.getSelectedRow();
+
+        int index = this.tblSongToAlbum.getSelectedRow();
+        return index;
     }
 
     public int getSelectedRowArtist() {
-        return this.tblArtistToAlbum.getSelectedRow();
+
+        int index = this.tblArtistToAlbum.getSelectedRow();
+        return index;
     }
 
+    //String title, int releaseDate, ArrayList<Artist> artistAlbum, ArrayList<Song> songAlbum
+    public Album getAlbum(ArrayList<Artist> artistArray, ArrayList<Song> songArray) {
+        return new Album(this.txtTitleAlbum.getText(), Integer.parseInt(this.spReleaseYearAlbum.getValue().toString()), artistArray, songArray);
+    }
+
+   
+
+    public void clearSelection() {
+        if (tblRegisteredSongs.getSelectedRow() != -1) {
+            tblRegisteredSongs.clearSelection();
+        }
+        if (tblRegisteredArtist.getSelectedRow() != -1) {
+            tblRegisteredArtist.clearSelection();
+        }
+        if (tblSongToAlbum.getSelectedRow() != -1) {
+            tblSongToAlbum.clearSelection();
+        }
+        if (tblArtistToAlbum.getSelectedRow() != -1) {
+            tblArtistToAlbum.clearSelection();
+        }
+    }
+
+    //setdatatables
     public void setDataTableSongRegistered(String[][] data, String[] title) {
         DefaultTableModel model = new DefaultTableModel(data, title);
         this.tblRegisteredSongs.setModel(model);
@@ -58,6 +94,7 @@ public class GUIAlbum extends javax.swing.JFrame {
         this.jScrollPane4.setViewportView(this.tblRegisteredArtist);
     }
 
+    //SETDATATABLES TOALBUM
     public void setDataTableSongToAlbum(String[][] data, String[] title) {
 
         DefaultTableModel model = new DefaultTableModel(data, title);
@@ -72,20 +109,12 @@ public class GUIAlbum extends javax.swing.JFrame {
         this.jScrollPane3.setViewportView(this.tblArtistToAlbum);
     }
 
+    //GETDATAROWSS
     public String[] getDataRowRegisteredSongs() {
         String[] dataSong = new String[this.tblRegisteredSongs.getColumnCount()];
         int selectRow = this.tblRegisteredSongs.getSelectedRow();
         for (int i = 0; i < dataSong.length; i++) {
             dataSong[i] = this.tblRegisteredSongs.getValueAt(selectRow, i).toString();
-        }
-        return dataSong;
-    }
-
-    public String[] getDataRowSongToAlbum() {
-        String[] dataSong = new String[this.tblSongToAlbum.getColumnCount()];
-        int selectRow = this.tblSongToAlbum.getSelectedRow();
-        for (int i = 0; i < dataSong.length; i++) {
-            dataSong[i] = this.tblSongToAlbum.getValueAt(selectRow, i).toString();
         }
         return dataSong;
     }
@@ -98,16 +127,12 @@ public class GUIAlbum extends javax.swing.JFrame {
         }
         return dataSong;
     }
-
-    public String[] getDataRowArtistToAlbum() {
-        String[] dataSong = new String[this.tblArtistToAlbum.getColumnCount()];
-        int selectRow = this.tblArtistToAlbum.getSelectedRow();
-        for (int i = 0; i < dataSong.length; i++) {
-            dataSong[i] = this.tblArtistToAlbum.getValueAt(selectRow, i).toString();
-        }
-        return dataSong;
+    
+    public void listenBottons(ActionListener controller){
+        this.btnAddAlbum.addActionListener(controller);
+        this.btnClose.addActionListener(controller);
     }
-
+    
     public void listenMouse(MouseListener controller) {
         this.tblRegisteredSongs.addMouseListener(controller);
         this.tblSongToAlbum.addMouseListener(controller);
@@ -127,16 +152,16 @@ public class GUIAlbum extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        txtTitleAlbum = new javax.swing.JTextField();
+        spReleaseYearAlbum = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRegisteredSongs = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSongToAlbum = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAddAlbum = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblArtistToAlbum = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -144,7 +169,7 @@ public class GUIAlbum extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setText("Song records");
@@ -155,7 +180,7 @@ public class GUIAlbum extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
         jLabel3.setText("Release date:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(2024, 1582, 2024, 1));
+        spReleaseYearAlbum.setModel(new javax.swing.SpinnerNumberModel(2024, 1582, 2024, 1));
 
         tblRegisteredSongs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,14 +219,14 @@ public class GUIAlbum extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
         jLabel5.setText("Add Songs to Album");
 
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddAlbum.setText("Add");
+        btnAddAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddAlbumActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Close");
+        btnClose.setText("Close");
 
         tblArtistToAlbum.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,15 +238,7 @@ public class GUIAlbum extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane3.setViewportView(tblArtistToAlbum);
 
         tblRegisteredArtist.setModel(new javax.swing.table.DefaultTableModel(
@@ -234,15 +251,7 @@ public class GUIAlbum extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane4.setViewportView(tblRegisteredArtist);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
@@ -275,18 +284,18 @@ public class GUIAlbum extends javax.swing.JFrame {
                         .addGap(276, 276, 276)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
-                        .addComponent(jButton1)
+                        .addComponent(btnAddAlbum)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(btnClose))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
                         .addGap(6, 6, 6)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTitleAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(106, 106, 106)
                         .addComponent(jLabel3)
                         .addGap(6, 6, 6)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(spReleaseYearAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -312,8 +321,8 @@ public class GUIAlbum extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(btnAddAlbum)
+                            .addComponent(btnClose))))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -323,8 +332,8 @@ public class GUIAlbum extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtTitleAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(spReleaseYearAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4))
                     .addComponent(jLabel6))
@@ -346,9 +355,9 @@ public class GUIAlbum extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAlbumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddAlbumActionPerformed
 
     private void tblRegisteredSongsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegisteredSongsMouseClicked
         // TODO add your handling code here:
@@ -356,8 +365,8 @@ public class GUIAlbum extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAddAlbum;
+    private javax.swing.JButton btnClose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -369,11 +378,11 @@ public class GUIAlbum extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSpinner spReleaseYearAlbum;
     private javax.swing.JTable tblArtistToAlbum;
     private javax.swing.JTable tblRegisteredArtist;
     private javax.swing.JTable tblRegisteredSongs;
     private javax.swing.JTable tblSongToAlbum;
+    private javax.swing.JTextField txtTitleAlbum;
     // End of variables declaration//GEN-END:variables
 }

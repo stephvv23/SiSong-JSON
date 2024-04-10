@@ -24,6 +24,7 @@ public class GUIMain extends javax.swing.JFrame {
         this.jmiArtist.addActionListener(controller);
         this.jmiAlbums.addActionListener(controller);
         this.jmiSongs.addActionListener(controller);
+        this.jmiAlbumReport.addActionListener(controller);
     }
 
     /**
@@ -35,6 +36,7 @@ public class GUIMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu3 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmiExit = new javax.swing.JMenuItem();
@@ -43,6 +45,10 @@ public class GUIMain extends javax.swing.JFrame {
         jmiSongs = new javax.swing.JMenuItem();
         jmiArtist = new javax.swing.JMenuItem();
         jmiAlbums = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jmiAlbumReport = new javax.swing.JMenuItem();
+
+        jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +81,19 @@ public class GUIMain extends javax.swing.JFrame {
         });
         jMenu2.add(jmiAlbums);
 
+        jMenu4.setText("Report");
+
+        jmiAlbumReport.setText("Album report");
+        jmiAlbumReport.setActionCommand("Album report");
+        jmiAlbumReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAlbumReportActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmiAlbumReport);
+
+        jMenu2.add(jMenu4);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -97,12 +116,19 @@ public class GUIMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jmiAlbumsActionPerformed
 
+    private void jmiAlbumReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlbumReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiAlbumReportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jmiAlbumReport;
     private javax.swing.JMenuItem jmiAlbums;
     private javax.swing.JMenuItem jmiArtist;
     private javax.swing.JMenuItem jmiExit;

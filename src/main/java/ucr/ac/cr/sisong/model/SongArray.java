@@ -104,22 +104,30 @@ public class SongArray {
             this.listSongsSelected.add(song);
         }
     }
+    public ArrayList getArraySongToAlbum(){
+        return listSongsSelected;
+    }
 
     public void deleteSongSelected(int index) {
-
-        this.listSongsSelected.remove(index);
-
+            this.listSongsSelected.remove(index);
     }
-    
+
     public String[][] getMatrixDataSongsSelected() {
         String[][] matrixDataSongs = new String[this.listSongsSelected.size()][Song.TBL_LABELS.length];
-        for (int f = 0; f < matrixDataSongs.length; f++) {
-            for (int c = 0; c < matrixDataSongs[0].length; c++) {
-                matrixDataSongs[f][c] = this.listSongsSelected.get(f).getData(c);
+        if (listSongsSelected != null) {
+            for (int f = 0; f < matrixDataSongs.length; f++) {
+                for (int c = 0; c < matrixDataSongs[0].length; c++) {
+                    matrixDataSongs[f][c] = this.listSongsSelected.get(f).getData(c);
+                }
+
             }
-
+            return matrixDataSongs;
         }
-        return matrixDataSongs;
+        return null;
     }
-
+    
+    //Metodo para limpiar el array
+    public void limpiarLista(){
+        this.listSongsSelected = new ArrayList<>();
+    }
 }

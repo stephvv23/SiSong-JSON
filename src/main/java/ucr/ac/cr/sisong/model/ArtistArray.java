@@ -91,17 +91,38 @@ public class ArtistArray {
         }
         return false;
     }
+//
+//    public int searchIndexArtistSelected(Artist artist) {
+//        for (int i = 0; i < listArtistToAlbum.size(); i++) {
+//            if (artist.getArtistName().equals(listArtistToAlbum.get(i).getArtistName())) {
+//                return i;
+//            }
+//        }
+//        return -1;
+//    }
 
     public void addArtistSelected(Artist artist) {
         if (searchArtistSelected(artist) == false) {
             this.listArtistToAlbum.add(artist);
         }
     }
+//
+//    public void deleteSongSelected(int index) {
+//        if (index >= 0 && index < listSongsSelected.size()) {
+//            this.listSongsSelected.remove(index);
+//        } else {
+//            System.err.println("Índice fuera de los límites del ArrayList");
+//        }
+//    }
 
     public void deleteArtistSelected(int index) {
 
         this.listArtistToAlbum.remove(index);
 
+    }
+
+    public ArrayList getArrayArtistToAlbum() {
+        return listArtistToAlbum;
     }
 
     public void cleanListArtistSelected() {
@@ -110,15 +131,20 @@ public class ArtistArray {
 
     public String[][] getMatrixArtistToAlbum() {
         String[][] matrixArtistAlbum = new String[listArtistToAlbum.size()][Artist.TB_LABELS.length];
+        if (listArtistToAlbum != null) {
+            for (int f = 0; f < matrixArtistAlbum.length; f++) {
+                for (int c = 0; c < matrixArtistAlbum[0].length; c++) {
+                    matrixArtistAlbum[f][c] = this.listArtistToAlbum.get(f).getData(c);
+                }
 
-        for (int f = 0; f < matrixArtistAlbum.length; f++) {
-            for (int c = 0; c < matrixArtistAlbum[0].length; c++) {
-                matrixArtistAlbum[f][c] = this.listArtistToAlbum.get(f).getData(c);
             }
-
+            return matrixArtistAlbum;
         }
-        return matrixArtistAlbum;
-
+        return null;
     }
 
+    //Metodo para limpiar el array
+    public void limpiarLista(){
+        this.listArtistToAlbum = new ArrayList<>();
+    }
 }
