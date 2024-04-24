@@ -39,7 +39,7 @@ public class ControllerArtist implements ActionListener, MouseListener {
         this.buttonsPanel.listen(this);
         this.dataPanelArtist.listenComboName(this);
         this.artistArray = artistArray;
-
+        this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
     }
 
     @Override
@@ -49,10 +49,11 @@ public class ControllerArtist implements ActionListener, MouseListener {
                 this.artist = this.dataPanelArtist.getArtist();
                 if (artist != null) {
                     if (this.validationData(artist)) {
-                        
+
                         GUISong.setMessage(this.artistArray.add(artist));
-                        this.dataPanelArtist.clean();
+                        this.artistArray.getArrayArtist();//$$$$$$$$$$$$$$$$$$$$$$$$$$ ;b
                         this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
+                        this.dataPanelArtist.clean();
 
                     }
                 }
@@ -61,7 +62,7 @@ public class ControllerArtist implements ActionListener, MouseListener {
 
             case "Edit":
                 if (validationData(dataPanelArtist.getArtist())) {
-                    
+
                     this.guiArtist.setMessage(this.artistArray.edit(dataPanelArtist.getArtist()));
                     dataPanelArtist.setNameCombo(artistArray.getNameList());
                     dataPanelArtist.clean();

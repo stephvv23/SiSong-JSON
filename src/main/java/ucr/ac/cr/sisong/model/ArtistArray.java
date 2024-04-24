@@ -34,7 +34,7 @@ public class ArtistArray {
             Artist artist = new Artist();
 
             //String artistName, String musicalGenre, String nation
-            artist.setArtistName(String.valueOf(jsonObject.get("name")));//tener cuidado con las keys
+            artist.setArtistName(String.valueOf(jsonObject.get("artistName")));//tener cuidado con las keys
             artist.setMusicalGenre(String.valueOf(jsonObject.get("musicalGenre")));
             artist.setNation(String.valueOf(jsonObject.get("nation")));
 
@@ -53,10 +53,10 @@ public class ArtistArray {
 
     public String add(Artist artist) {
         if (this.search(artist.getArtistName()) == null) {
-            
-            JSONFile jsonFile = new JSONFile("songs.json");
+
+            JSONFile jsonFile = new JSONFile("artist.json");
             JSONObject jsonObjectAdd = new JSONObject();
-             
+
             //String artistName, String musicalGenre, String nation
             jsonObjectAdd.put("artistName", artist.getArtistName());
             jsonObjectAdd.put("musicalGenre", artist.getMusicalGenre());
@@ -65,7 +65,7 @@ public class ArtistArray {
             jsonFile.writer(jsonObjectAdd);
             return "Artist succesfuly added";
         }
-        return "Error adding song.\nName already added";
+        return "Error adding Artist.\nName already added";
     }
 
     public String delete(String name) {
