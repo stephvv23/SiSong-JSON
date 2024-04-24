@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Stephanie
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class Album {
 

@@ -20,7 +20,7 @@ import ucr.ac.cr.sisong.view.GUISong;
 
 /**
  *
- * @author Stephanie
+ * @author Stephanie Venegas Villalobos C38405
  */
 class ControllerAlbum implements ActionListener, MouseListener {
 
@@ -53,6 +53,12 @@ class ControllerAlbum implements ActionListener, MouseListener {
         } else if (albumValidate.getReleaseDate() == 0) {
             GUISong.setMessage("The released year is empty");
             return false;
+        } else if (albumValidate.getArtistAlbum().size() == 0) {
+            GUISong.setMessage("The artist list is empty");
+            return false;
+        } else if (albumValidate.getSongAlbum().size() == 0) {
+            GUISong.setMessage("The song list is empty");
+            return false;
         } else {
             return true;
         }
@@ -65,15 +71,16 @@ class ControllerAlbum implements ActionListener, MouseListener {
                 guiAlbums.dispose();
                 break;
             case "Add":
-                System.out.println("Nashe");
                 Album album = guiAlbums.getAlbum(artistArray.getArrayArtistToAlbum(), songArray.getArraySongToAlbum());
                 if (this.validateAlbum(album)) {
-                    albumArray.addAlbum(album);
+                    GUISong.setMessage(albumArray.addAlbum(album));
                 }
                 break;
         }
         artistArray.limpiarLista();
         songArray.limpiarLista();
+        guiAlbums.setDataTableSongToAlbum(new String[0][0], Song.TBL_LABELS);
+        guiAlbums.setDataTableArtistToAlbum(new String[0][0], Artist.TB_LABELS);
     }
 
     @Override
@@ -82,39 +89,33 @@ class ControllerAlbum implements ActionListener, MouseListener {
         if (e.getSource() == guiAlbums.getTableRegisteredSongs()) {
 
             this.songArray.addSongSelected(new Song((Integer.parseInt(this.guiAlbums.getDataRowRegisteredSongs()[0])),
+                    
                     this.guiAlbums.getDataRowRegisteredSongs()[1],
+                    
                     Double.parseDouble(this.guiAlbums.getDataRowRegisteredSongs()[2]),
+                    
                     this.guiAlbums.getDataRowRegisteredSongs()[3],
+                    
                     Integer.parseInt(this.guiAlbums.getDataRowRegisteredSongs()[4])));
-
+            
             guiAlbums.setDataTableSongToAlbum(this.songArray.getMatrixDataSongsSelected(), Song.TBL_LABELS);
-//            guiAlbums.clearSelection();
-        }
 
-        else if (e.getSource() == guiAlbums.getTableRegisteredArtist()) {
+        } else if (e.getSource() == guiAlbums.getTableRegisteredArtist()) {
 
             this.artistArray.addArtistSelected(new Artist(this.guiAlbums.getDataRowRegisteredArtist()[0],
                     this.guiAlbums.getDataRowRegisteredArtist()[1],
                     this.guiAlbums.getDataRowRegisteredArtist()[2]));
             guiAlbums.setDataTableArtistToAlbum(this.artistArray.getMatrixArtistToAlbum(), Artist.TB_LABELS);
-//            guiAlbums.clearSelection();
-        }
 
-        //Para eliminar
+        } //Para eliminar
         else if (e.getSource() == guiAlbums.getTableSongToAlbum()) {
-            System.out.print(guiAlbums.getSelectedRowSong());
+
             this.songArray.deleteSongSelected(guiAlbums.getSelectedRowSong());
 
-            guiAlbums.setDataTableSongToAlbum(this.songArray.getMatrixDataSongsSelected(), Song.TBL_LABELS);
-            guiAlbums.clearSelection();
+        } else {
 
-        }
-
-        else {
-            System.out.print(guiAlbums.getSelectedRowArtist());
             this.artistArray.deleteArtistSelected(guiAlbums.getSelectedRowArtist());
             guiAlbums.setDataTableArtistToAlbum(this.artistArray.getMatrixArtistToAlbum(), Artist.TB_LABELS);
-            guiAlbums.clearSelection();
 
         }
     }

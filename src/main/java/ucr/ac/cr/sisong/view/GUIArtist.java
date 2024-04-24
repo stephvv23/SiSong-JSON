@@ -4,12 +4,11 @@
  */
 package ucr.ac.cr.sisong.view;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author sivv2
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class GUIArtist extends javax.swing.JFrame {
 
@@ -17,7 +16,7 @@ public class GUIArtist extends javax.swing.JFrame {
      * Creates new form GUIArtist
      */
     public GUIArtist() {
-        initComponents(); 
+        initComponents();
     }
 
     public ButtonsPanel getButtonsPanel() {
@@ -28,11 +27,8 @@ public class GUIArtist extends javax.swing.JFrame {
         return dataPanelArtist2;
     }
 
-    
-  
-    
     //ojo es el mismo de GUISong
-    public void setMessage(String msj){
+    public void setMessage(String msj) {
         JOptionPane.showMessageDialog(this, msj);
     }
 
@@ -45,20 +41,38 @@ public class GUIArtist extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         buttonsPanel2 = new ucr.ac.cr.sisong.view.ButtonsPanel();
         dataPanelArtist2 = new ucr.ac.cr.sisong.view.DataPanelArtist();
 
+        setMinimumSize(new java.awt.Dimension(383, 372));
+        setPreferredSize(new java.awt.Dimension(383, 372));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 370, 90));
-        getContentPane().add(dataPanelArtist2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 650));
+
+        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setText("clear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 110, 40));
+        getContentPane().add(buttonsPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 210, 370, 80));
+
+        dataPanelArtist2.setPreferredSize(new java.awt.Dimension(388, 297));
+        getContentPane().add(dataPanelArtist2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 280));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dataPanelArtist2.clean();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ucr.ac.cr.sisong.view.ButtonsPanel buttonsPanel2;
     private ucr.ac.cr.sisong.view.DataPanelArtist dataPanelArtist2;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

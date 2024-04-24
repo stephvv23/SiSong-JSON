@@ -5,10 +5,12 @@
 package ucr.ac.cr.sisong.model;
 
 import java.util.ArrayList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
- * @author sivv2
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class SongArray {
 
@@ -16,8 +18,32 @@ public class SongArray {
     private ArrayList<Song> listSongsSelected;
 
     public SongArray() {
-        this.listSongs = new ArrayList<>();
+        this.getArraySong();
         this.listSongsSelected = new ArrayList<>();
+
+    }
+
+    //Metodo para desmenusar el JSONArray e irlos haciendo en objetos y añadiendo al array
+    //es buenoi estarlo actualizando cada que guardamos o editamos y eliminamos
+    public void getArraySong() {
+        this.listSongs = new ArrayList<>();
+
+        JSONFile jsonFile = new JSONFile("songs.json");
+        JSONArray jsonArray = jsonFile.read();
+        for (Object object : jsonArray) {
+
+            JSONObject jsonObject = (JSONObject) object;
+
+            Song song = new Song();
+
+            song.setIdSong(Integer.parseInt(String.valueOf(jsonObject.get("id"))));//tener cuidado con las keys
+            song.setTitle(String.valueOf(jsonObject.get("title")));
+            song.setMusicGenre(String.valueOf(jsonObject.get("genre")));
+            song.setTime(Double.parseDouble(String.valueOf(jsonObject.get("time"))));
+            song.setReleaseYear(Integer.parseInt(String.valueOf(jsonObject.get("year"))));
+
+            this.listSongs.add(song);
+        }
     }
 
     public Song search(int idSong) {
@@ -32,7 +58,16 @@ public class SongArray {
     public String add(Song song) {
         if (song != null) {
             if (this.search(song.getIdSong()) == null) {
-                this.listSongs.add(song);
+
+                JSONFile jsonFile = new JSONFile("songs.json");
+                JSONObject jsonObjectAdd = new JSONObject();
+                jsonObjectAdd.put("id", song.getIdSong());
+                jsonObjectAdd.put("title", song.getTitle());
+                jsonObjectAdd.put("genre", song.getMusicGenre());
+                jsonObjectAdd.put("time", song.getTime());
+                jsonObjectAdd.put("year", song.getReleaseYear());
+
+                jsonFile.writer(jsonObjectAdd);
                 return "Song added succesfully!";
             } else {
                 return "The song is already registred";
@@ -67,10 +102,12 @@ public class SongArray {
     }
 
     public int getIDdLabel() {
-        return listSongs.size() + 1;
+        if (this.listSongs.size() > 0) {
+            return listSongs.get(listSongs.size() - 1).getIdSong() + 1;
+        }
+        return 1;
     }
 
-    //ojo*************************************************************************************************
     public String[] getIDCombo() {
         String[] idsList = new String[this.listSongs.size()];
         for (int i = 0; i < this.listSongs.size(); i++) {
@@ -104,12 +141,13 @@ public class SongArray {
             this.listSongsSelected.add(song);
         }
     }
-    public ArrayList getArraySongToAlbum(){
+
+    public ArrayList getArraySongToAlbum() {
         return listSongsSelected;
     }
 
     public void deleteSongSelected(int index) {
-            this.listSongsSelected.remove(index);
+        this.listSongsSelected.remove(index);
     }
 
     public String[][] getMatrixDataSongsSelected() {
@@ -125,9 +163,9 @@ public class SongArray {
         }
         return null;
     }
-    
+
     //Metodo para limpiar el array
-    public void limpiarLista(){
+    public void limpiarLista() {
         this.listSongsSelected = new ArrayList<>();
     }
 }

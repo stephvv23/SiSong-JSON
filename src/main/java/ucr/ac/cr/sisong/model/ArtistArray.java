@@ -5,10 +5,12 @@
 package ucr.ac.cr.sisong.model;
 
 import java.util.ArrayList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
- * @author sivv2
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class ArtistArray {
 
@@ -16,8 +18,28 @@ public class ArtistArray {
     private ArrayList<Artist> listArtistToAlbum;
 
     public ArtistArray() {
-        this.listArtist = new ArrayList<>();
+        this.getArrayArtist();
         this.listArtistToAlbum = new ArrayList<>();
+    }
+
+    public void getArrayArtist() {
+        this.listArtist = new ArrayList<>();
+
+        JSONFile jsonFile = new JSONFile("artist.json");
+        JSONArray jsonArray = jsonFile.read();
+        for (Object object : jsonArray) {
+
+            JSONObject jsonObject = (JSONObject) object;
+
+            Artist artist = new Artist();
+
+            //String artistName, String musicalGenre, String nation
+            artist.setArtistName(String.valueOf(jsonObject.get("name")));//tener cuidado con las keys
+            artist.setMusicalGenre(String.valueOf(jsonObject.get("musicalGenre")));
+            artist.setNation(String.valueOf(jsonObject.get("nation")));
+
+            this.listArtist.add(artist);
+        }
     }
 
     public Artist search(String name) {
@@ -31,10 +53,19 @@ public class ArtistArray {
 
     public String add(Artist artist) {
         if (this.search(artist.getArtistName()) == null) {
-            listArtist.add(artist);
+            
+            JSONFile jsonFile = new JSONFile("songs.json");
+            JSONObject jsonObjectAdd = new JSONObject();
+             
+            //String artistName, String musicalGenre, String nation
+            jsonObjectAdd.put("artistName", artist.getArtistName());
+            jsonObjectAdd.put("musicalGenre", artist.getMusicalGenre());
+            jsonObjectAdd.put("nation", artist.getNation());
+
+            jsonFile.writer(jsonObjectAdd);
             return "Artist succesfuly added";
         }
-        return "Error adding song.\nId already added";
+        return "Error adding song.\nName already added";
     }
 
     public String delete(String name) {
@@ -91,29 +122,12 @@ public class ArtistArray {
         }
         return false;
     }
-//
-//    public int searchIndexArtistSelected(Artist artist) {
-//        for (int i = 0; i < listArtistToAlbum.size(); i++) {
-//            if (artist.getArtistName().equals(listArtistToAlbum.get(i).getArtistName())) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
 
     public void addArtistSelected(Artist artist) {
         if (searchArtistSelected(artist) == false) {
             this.listArtistToAlbum.add(artist);
         }
     }
-//
-//    public void deleteSongSelected(int index) {
-//        if (index >= 0 && index < listSongsSelected.size()) {
-//            this.listSongsSelected.remove(index);
-//        } else {
-//            System.err.println("Índice fuera de los límites del ArrayList");
-//        }
-//    }
 
     public void deleteArtistSelected(int index) {
 
@@ -144,7 +158,7 @@ public class ArtistArray {
     }
 
     //Metodo para limpiar el array
-    public void limpiarLista(){
+    public void limpiarLista() {
         this.listArtistToAlbum = new ArrayList<>();
     }
 }

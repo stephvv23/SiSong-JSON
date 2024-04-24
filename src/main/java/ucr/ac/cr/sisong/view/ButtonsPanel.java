@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Usuario
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class ButtonsPanel extends javax.swing.JPanel {
 

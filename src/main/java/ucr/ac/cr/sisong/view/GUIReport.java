@@ -12,7 +12,7 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author sivv2
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class GUIReport extends javax.swing.JFrame {
 
@@ -27,9 +27,12 @@ public class GUIReport extends javax.swing.JFrame {
     public void setDataTable(String[][] matrixData, String[] TB_Labels) {
         DefaultTableModel model = new DefaultTableModel(matrixData, TB_Labels);
         this.tblReport.setModel(model);
+        //sorter
         this.tblReport.setAutoCreateRowSorter(true);
         this.sorter = new TableRowSorter<>(model);
         this.tblReport.setRowSorter(sorter);
+        
+        
         this.jScrollPane1.setViewportView(this.tblReport);
     }
 

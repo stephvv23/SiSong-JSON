@@ -5,7 +5,6 @@
 package ucr.ac.cr.sisong.view;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import ucr.ac.cr.sisong.model.Artist;
@@ -40,9 +39,7 @@ public class GUIReportAlbum extends javax.swing.JFrame {
     public void setAlbum(String[][] albumSongs, String[][] albumArtist, int releaseYear) {
 
         this.tblAlbumSongs.setModel(new DefaultTableModel(albumSongs, Song.TBL_LABELS));
-
         this.tblAlbumArtist.setModel(new DefaultTableModel(albumArtist, Artist.TB_LABELS));
-
         this.lbReleaseYear.setText(Integer.toString(releaseYear));
     }
 

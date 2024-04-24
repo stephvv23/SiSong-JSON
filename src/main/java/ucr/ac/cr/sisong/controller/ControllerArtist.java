@@ -6,11 +6,10 @@ package ucr.ac.cr.sisong.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import ucr.ac.cr.sisong.model.Artist;
 import ucr.ac.cr.sisong.model.ArtistArray;
-import ucr.ac.cr.sisong.model.Song;
-import ucr.ac.cr.sisong.model.SongArray;
 import ucr.ac.cr.sisong.view.ButtonsPanel;
 import ucr.ac.cr.sisong.view.DataPanelArtist;
 import ucr.ac.cr.sisong.view.GUIArtist;
@@ -19,9 +18,9 @@ import ucr.ac.cr.sisong.view.GUISong;
 
 /**
  *
- * @author sivv2
+ * @author Stephanie Venegas Villalobos C38405
  */
-public class ControllerArtist implements ActionListener {
+public class ControllerArtist implements ActionListener, MouseListener {
 
     private GUIArtist guiArtist;
     private DataPanelArtist dataPanelArtist;
@@ -32,19 +31,15 @@ public class ControllerArtist implements ActionListener {
 
     public ControllerArtist(ArtistArray artistArray) {
         this.guiArtist = new GUIArtist();
+
         this.dataPanelArtist = this.guiArtist.getDataPanelArtist();
         this.dataPanelArtist.setCbNation();
-        
-//        this.songArray = songArray;
-//        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
-        this.guiReport = new GUIReport();
-        
+        this.dataPanelArtist.setCbMusicGenre();
         this.buttonsPanel = this.guiArtist.getButtonsPanel();
         this.buttonsPanel.listen(this);
         this.dataPanelArtist.listenComboName(this);
         this.artistArray = artistArray;
 
-        this.guiArtist.setVisible(true);
     }
 
     @Override
@@ -54,11 +49,11 @@ public class ControllerArtist implements ActionListener {
                 this.artist = this.dataPanelArtist.getArtist();
                 if (artist != null) {
                     if (this.validationData(artist)) {
+                        
                         GUISong.setMessage(this.artistArray.add(artist));
                         this.dataPanelArtist.clean();
                         this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
-//                        this.dataPanelArtist.setTblSongsRegistered(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
-//                        this.artistArray.cleanListSongsSelected();
+
                     }
                 }
 
@@ -66,18 +61,17 @@ public class ControllerArtist implements ActionListener {
 
             case "Edit":
                 if (validationData(dataPanelArtist.getArtist())) {
+                    
                     this.guiArtist.setMessage(this.artistArray.edit(dataPanelArtist.getArtist()));
                     dataPanelArtist.setNameCombo(artistArray.getNameList());
                     dataPanelArtist.clean();
                     this.dataPanelArtist.setCbNameArtist(artistArray.getNameList());
                 }
-//                this.artistArray.cleanListSongsSelected();
+
                 break;
 
             case "Report":
-
-                guiReport.setDataTable(artistArray.getMatrixArtist(), Artist.TB_LABELS);
-                guiReport.setVisible(true);
+                this.getReport();
                 break;
 
             case "Delete":
@@ -95,15 +89,25 @@ public class ControllerArtist implements ActionListener {
                 if (!dataPanelArtist.getNameCombo().equalsIgnoreCase("Artist name")) {
                     Artist auxArtist = this.artistArray.search(dataPanelArtist.getNameCombo());
                     dataPanelArtist.setArtist(auxArtist);
-//                    this.dataPanelArtist.setTblArtistSongs(this.artistArray.getMatrixArtistSongsAlreadyExist(auxArtist.getArtistSongs()), Song.TBL_LABELS);
                 }
                 break;
 
             case "Exit":
-                guiArtist.setVisible(false);
+                guiArtist.dispose();
                 break;
 
         }
+    }
+
+    public void getReport() {
+        this.guiReport = new GUIReport();
+        this.guiReport.setDataTable(artistArray.getMatrixArtist(), Artist.TB_LABELS);
+        this.guiReport.listenMouse(this);
+        this.guiReport.setVisible(true);
+    }
+
+    public void setVisible() {
+        this.guiArtist.setVisible(true);
     }
 
     public boolean validationData(Artist artistValidate) {
@@ -121,5 +125,29 @@ public class ControllerArtist implements ActionListener {
         }
 
         return true;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Artist auxArtist = this.artistArray.search(this.guiReport.getDataRow()[0]);
+        this.dataPanelArtist.setArtist(auxArtist);
+        this.guiArtist.setVisible(true);
+        this.guiReport.dispose();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }

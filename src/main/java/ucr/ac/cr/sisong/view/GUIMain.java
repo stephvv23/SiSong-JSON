@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Stephanie
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class GUIMain extends javax.swing.JFrame {
 
@@ -25,6 +25,8 @@ public class GUIMain extends javax.swing.JFrame {
         this.jmiAlbums.addActionListener(controller);
         this.jmiSongs.addActionListener(controller);
         this.jmiAlbumReport.addActionListener(controller);
+        this.jmiArtistReport.addActionListener(controller);
+        this.jmiSongReport.addActionListener(controller);
     }
 
     /**
@@ -46,6 +48,8 @@ public class GUIMain extends javax.swing.JFrame {
         jmiArtist = new javax.swing.JMenuItem();
         jmiAlbums = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jmiSongReport = new javax.swing.JMenuItem();
+        jmiArtistReport = new javax.swing.JMenuItem();
         jmiAlbumReport = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
@@ -83,8 +87,13 @@ public class GUIMain extends javax.swing.JFrame {
 
         jMenu4.setText("Report");
 
+        jmiSongReport.setText("Song report");
+        jMenu4.add(jmiSongReport);
+
+        jmiArtistReport.setText("Artist report");
+        jMenu4.add(jmiArtistReport);
+
         jmiAlbumReport.setText("Album report");
-        jmiAlbumReport.setActionCommand("Album report");
         jmiAlbumReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiAlbumReportActionPerformed(evt);
@@ -131,7 +140,9 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiAlbumReport;
     private javax.swing.JMenuItem jmiAlbums;
     private javax.swing.JMenuItem jmiArtist;
+    private javax.swing.JMenuItem jmiArtistReport;
     private javax.swing.JMenuItem jmiExit;
+    private javax.swing.JMenuItem jmiSongReport;
     private javax.swing.JMenuItem jmiSongs;
     // End of variables declaration//GEN-END:variables
 }

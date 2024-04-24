@@ -4,18 +4,15 @@
  */
 package ucr.ac.cr.sisong.model;
 
-import java.util.ArrayList;
-
 /**
  *
- * @author sivv2
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class Artist {
 
     private String artistName;
     private String musicalGenre;
     private String nation;
-    private Song[] artistSongs;
     public static final String[] TB_LABELS = {"NAME", "NATION", "MUSICAL GENRE"};
 
     public Artist() {
@@ -38,21 +35,6 @@ public class Artist {
         this.artistName = artistName;
         this.musicalGenre = musicalGenre;
         this.nation = nation;
-    }
-
-    public Artist(String artistName, String musicalGenre, String nation, Song[] artistSongs) {
-        this.artistName = artistName;
-        this.musicalGenre = musicalGenre;
-        this.nation = nation;
-        this.artistSongs = artistSongs;
-    }
-
-    public Song[] getArtistSongs() {
-        return artistSongs;
-    }
-
-    public void setArtistSongs(Song[] artistSongs) {
-        this.artistSongs = artistSongs;
     }
 
     public String getArtistName() {

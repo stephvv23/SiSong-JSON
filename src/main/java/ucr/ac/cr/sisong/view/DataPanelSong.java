@@ -16,9 +16,7 @@ import ucr.ac.cr.sisong.model.Song;
  */
 public class DataPanelSong extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ButtonsPanel
-     */
+    
     public DataPanelSong() {
         initComponents();
     }
@@ -40,11 +38,10 @@ public class DataPanelSong extends javax.swing.JPanel {
         this.txTitle.setText(song.getTitle());
         this.spTime.setValue(song.getTime());
         this.cbMusicGenre.setSelectedItem(song.getMusicGenre());
-        this.spReleaseYear.setValue(2024);
+        this.spReleaseYear.setValue(song.getReleaseYear());
     }
 
     public void clean() {
-        this.lbIdSong.setText("");
         this.txTitle.setText("");
         this.spTime.setValue(0.1);
         this.cbMusicGenre.setSelectedIndex(0);
@@ -69,9 +66,6 @@ public class DataPanelSong extends javax.swing.JPanel {
         return this.cbSong.getSelectedItem().toString();
     }
 
-    public void setEditCbCombo(boolean state) {
-        this.cbSong.setEnabled(state);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,7 +137,6 @@ public class DataPanelSong extends javax.swing.JPanel {
 
         cbSong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selected Item" }));
         cbSong.setActionCommand("songCombo");
-        cbSong.setEnabled(false);
         add(cbSong, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Background2.jpg"))); // NOI18N

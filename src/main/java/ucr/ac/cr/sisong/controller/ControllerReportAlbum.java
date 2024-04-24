@@ -12,7 +12,7 @@ import ucr.ac.cr.sisong.view.GUIReportAlbum;
 
 /**
  *
- * @author Stephanie
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class ControllerReportAlbum implements ActionListener{
     private GUIReportAlbum guiReportAlbum;

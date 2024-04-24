@@ -15,7 +15,6 @@ public class Song {
     private double time;
     private String musicGenre;
     private int releaseYear;
-    ///TITLE_SONGh
     public static final String[] TBL_LABELS = {"ID", "Title", "Duration", "Music genre", "Release year"};
 
     public Song() {

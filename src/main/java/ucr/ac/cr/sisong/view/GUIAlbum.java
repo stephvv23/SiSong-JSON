@@ -17,7 +17,7 @@ import ucr.ac.cr.sisong.model.Song;
  * //
  *
  *
- * @author Stephanie
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class GUIAlbum extends javax.swing.JFrame {
     
@@ -29,7 +29,6 @@ public class GUIAlbum extends javax.swing.JFrame {
         
     }
 
-    //mETODOS PARA OBTENER LOS NOMBRES
     public JTable getTableRegisteredSongs() {
         return this.tblRegisteredSongs;
     }
@@ -46,7 +45,6 @@ public class GUIAlbum extends javax.swing.JFrame {
         return this.tblArtistToAlbum;
     }
 
-    //METODOS PARA OBTENER LA FILA SELECCIONADA DE UNA TABLA
     public int getSelectedRowSong() {
 
         int index = this.tblSongToAlbum.getSelectedRow();
@@ -59,29 +57,11 @@ public class GUIAlbum extends javax.swing.JFrame {
         return index;
     }
 
-    //String title, int releaseDate, ArrayList<Artist> artistAlbum, ArrayList<Song> songAlbum
+    
     public Album getAlbum(ArrayList<Artist> artistArray, ArrayList<Song> songArray) {
         return new Album(this.txtTitleAlbum.getText(), Integer.parseInt(this.spReleaseYearAlbum.getValue().toString()), artistArray, songArray);
     }
 
-   
-
-    public void clearSelection() {
-        if (tblRegisteredSongs.getSelectedRow() != -1) {
-            tblRegisteredSongs.clearSelection();
-        }
-        if (tblRegisteredArtist.getSelectedRow() != -1) {
-            tblRegisteredArtist.clearSelection();
-        }
-        if (tblSongToAlbum.getSelectedRow() != -1) {
-            tblSongToAlbum.clearSelection();
-        }
-        if (tblArtistToAlbum.getSelectedRow() != -1) {
-            tblArtistToAlbum.clearSelection();
-        }
-    }
-
-    //setdatatables
     public void setDataTableSongRegistered(String[][] data, String[] title) {
         DefaultTableModel model = new DefaultTableModel(data, title);
         this.tblRegisteredSongs.setModel(model);
@@ -94,7 +74,6 @@ public class GUIAlbum extends javax.swing.JFrame {
         this.jScrollPane4.setViewportView(this.tblRegisteredArtist);
     }
 
-    //SETDATATABLES TOALBUM
     public void setDataTableSongToAlbum(String[][] data, String[] title) {
 
         DefaultTableModel model = new DefaultTableModel(data, title);
@@ -109,7 +88,6 @@ public class GUIAlbum extends javax.swing.JFrame {
         this.jScrollPane3.setViewportView(this.tblArtistToAlbum);
     }
 
-    //GETDATAROWSS
     public String[] getDataRowRegisteredSongs() {
         String[] dataSong = new String[this.tblRegisteredSongs.getColumnCount()];
         int selectRow = this.tblRegisteredSongs.getSelectedRow();

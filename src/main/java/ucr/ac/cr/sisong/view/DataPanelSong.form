@@ -183,7 +183,6 @@
           </StringArray>
         </Property>
         <Property name="actionCommand" type="java.lang.String" value="songCombo"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Stephanie
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class AlbumArray {
 
@@ -21,35 +21,14 @@ public class AlbumArray {
     public String addAlbum(Album album) {
 
         if (album != null) {
-            this.albumArray.add(album);
+            if (!this.existAlbum(album.getTitle())) {
+                this.albumArray.add(album);
+            }
             return " Adding album  sucefully";
         }
 
-        return "Error Adding artist";
+        return "Error Adding artist\n Lists void or title already exist.";
     }
-
-//    public String[][] getMatrixAlbumSong() {
-//        String[][] matrixArtist = new String[albumArray.size()][Song.TBL_LABELS.length];
-//        for (int f = 0; f < matrixArtist.length; f++) {
-//            for (int c = 0; c < matrixArtist[0].length; c++) {
-//                matrixArtist[f][c] = albumArray.get(f).getSongAlbum().get(f).getData(c);
-//            }
-//        }
-//        return matrixArtist;
-//
-//    }
-//
-//    public String[][] getMatrixAlbumArtist(ArrayList<Artist> arrayArtistalbums) {
-//
-//        String[][] matrixArtist = new String[arrayArtistalbums.size()][Artist.TB_LABELS.length];
-//        for (int f = 0; f < matrixArtist.length; f++) {
-//            for (int c = 0; c < matrixArtist[0].length; c++) {
-//                matrixArtist[f][c] = arrayArtistalbums.get(f).getData(c);
-//            }
-//        }
-//        return matrixArtist;
-//
-//    }
 
     public String[] getComboAlbum() {
         String[] idsList = new String[this.albumArray.size()];
@@ -70,6 +49,17 @@ public class AlbumArray {
 
         }
         return null;
+    }
+
+    public boolean existAlbum(String title) {
+        for (Album listArtist1 : albumArray) {
+            if (listArtist1.getTitle().equalsIgnoreCase(title)) {
+                return true;
+
+            }
+
+        }
+        return false;
     }
 
 }

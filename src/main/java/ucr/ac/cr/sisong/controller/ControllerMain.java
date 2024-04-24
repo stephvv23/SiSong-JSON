@@ -10,11 +10,12 @@ import ucr.ac.cr.sisong.model.AlbumArray;
 import ucr.ac.cr.sisong.model.ArtistArray;
 import ucr.ac.cr.sisong.model.SongArray;
 import ucr.ac.cr.sisong.view.GUIMain;
+import ucr.ac.cr.sisong.view.GUIReport;
 import ucr.ac.cr.sisong.view.GUIReportAlbum;
 
 /**
  *
- * @author Stephanie
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class ControllerMain implements ActionListener {
 
@@ -27,6 +28,7 @@ public class ControllerMain implements ActionListener {
     private ControllerAlbum controllerALbum;
     private ControllerReportAlbum controllerReportAlbum;
     private AlbumArray albumArray;
+    private GUIReport guiReport;
 
     public ControllerMain() {
         this.guiMain = new GUIMain();//Crear la instancia
@@ -43,20 +45,28 @@ public class ControllerMain implements ActionListener {
         switch (e.getActionCommand()) {
             case "Exit":
                 System.exit(0);
-
                 break;
             case "Artist":
                 this.controllerArtist = new ControllerArtist(artistArray);
+                this.controllerArtist.setVisible();
                 break;
             case "Songs":
                 this.controllerSong = new ControllerSong(songArray);
-
+                this.controllerSong.setVisible();
                 break;
             case "Albums":
                 this.controllerALbum = new ControllerAlbum(songArray, artistArray, albumArray);
                 break;
             case "Album report":
                 this.controllerReportAlbum = new ControllerReportAlbum(albumArray);
+                break;
+            case "Song report":
+                 ControllerSong controllerSongReport = new ControllerSong(songArray);
+                 controllerSongReport.getReport();
+                break;
+            case "Artist report":
+                ControllerArtist controllerArtistReport = new ControllerArtist(artistArray);
+                 controllerArtistReport.getReport();
                 break;
 
         }

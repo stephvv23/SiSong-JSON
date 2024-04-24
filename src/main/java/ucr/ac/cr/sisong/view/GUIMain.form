@@ -61,10 +61,19 @@
                 <Property name="text" type="java.lang.String" value="Report"/>
               </Properties>
               <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jmiSongReport">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Song report"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jmiArtistReport">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Artist report"/>
+                  </Properties>
+                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jmiAlbumReport">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Album report"/>
-                    <Property name="actionCommand" type="java.lang.String" value="Album report"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiAlbumReportActionPerformed"/>

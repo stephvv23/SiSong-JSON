@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author Stephanie Venegas Villalobos C38405
  */
 public class GUISong extends javax.swing.JFrame {
 
@@ -26,9 +26,9 @@ public class GUISong extends javax.swing.JFrame {
     public ButtonsPanel getButtonsPanel() {
         return this.buttonsPanel2;
     }
-    
+
     //Al ser estatic se puede obtener este metodo en todo el proyecto sin necesidad de instanciar ni nada, creo ;b
-    public static void setMessage(String msj){
+    public static void setMessage(String msj) {
         JOptionPane.showMessageDialog(null, msj);
     }
 

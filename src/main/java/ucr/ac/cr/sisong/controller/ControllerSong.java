@@ -30,14 +30,16 @@ public class ControllerSong implements ActionListener, MouseListener {
 
     public ControllerSong(SongArray songArray) {
         this.guiSong = new GUISong();
+        this.guiReport = new GUIReport();
         this.dataPanelSong = this.guiSong.getDataPanelSong();
         this.buttonsPanel = this.guiSong.getButtonsPanel();
         this.buttonsPanel.listen(this);
         this.dataPanelSong.listenCombo(this);
+        
         this.songArray = songArray;
         this.dataPanelSong.setLbIdSong(this.songArray.getIDdLabel());
+        this.dataPanelSong.setCbSong(this.songArray.getIDCombo());
         this.dataPanelSong.setCbMusicGenre();
-        this.guiSong.setVisible(true);
     }
 
     @Override
@@ -50,8 +52,8 @@ public class ControllerSong implements ActionListener, MouseListener {
                 if (this.song != null) {
                     if (this.validationData(song)) {
                         GUISong.setMessage(this.songArray.add(song));
+                        this.songArray.getArraySong();//$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                         this.dataPanelSong.setCbSong(this.songArray.getIDCombo());
-                        this.dataPanelSong.setEditCbCombo(true);
                         this.dataPanelSong.clean();
                         this.dataPanelSong.setLbIdSong(this.songArray.getIDdLabel());
                     }
@@ -61,23 +63,20 @@ public class ControllerSong implements ActionListener, MouseListener {
 
             case "Edit":
                 System.err.println("Edit");
-                GUISong.setMessage( this.songArray.edit(this.dataPanelSong.getSong()));
+                GUISong.setMessage(this.songArray.edit(this.dataPanelSong.getSong()));
+                this.dataPanelSong.setLbIdSong(this.songArray.getIDdLabel());
                 this.dataPanelSong.clean();
                 break;
 
             case "Delete":
                 System.err.println("Delete");
-                GUISong.setMessage( this.songArray.delete(this.dataPanelSong.getSong().getIdSong()));
+                GUISong.setMessage(this.songArray.delete(this.dataPanelSong.getSong().getIdSong()));
+                this.dataPanelSong.setLbIdSong(this.songArray.getIDdLabel());
                 this.dataPanelSong.clean();
                 break;
 
             case "Report":
-//                System.err.println("Report");
-//                GUISong.setMessage(this.songArray.toString());
-                this.guiReport = new GUIReport();
-                guiReport.setDataTable(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
-                guiReport.listenMouse(this);
-                guiReport.setVisible(true);
+                this.getReport();
                 break;
 
             case "songCombo":
@@ -90,10 +89,21 @@ public class ControllerSong implements ActionListener, MouseListener {
 
             case "Exit":
 
-                guiSong.setVisible(false);
+                guiSong.dispose();
                 break;
 
         }
+    }
+
+    public void getReport() {
+        this.guiReport = new GUIReport();
+        guiReport.setDataTable(this.songArray.getMatrixDataSongs(), Song.TBL_LABELS);
+        guiReport.listenMouse(this);
+        guiReport.setVisible(true);
+    }
+
+    public void setVisible() {
+        this.guiSong.setVisible(true);
     }
 
     public boolean validationData(Song songValidate) {
@@ -114,18 +124,18 @@ public class ControllerSong implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        this.dataPanelSong.setSong(
-                new Song(Integer.parseInt(this.guiReport.getDataRow()[0]),
+        Song song = new Song(Integer.parseInt(this.guiReport.getDataRow()[0]),
                 this.guiReport.getDataRow()[1],
                 Double.parseDouble(this.guiReport.getDataRow()[2]),
                 this.guiReport.getDataRow()[3],
-                Integer.parseInt(this.guiReport.getDataRow()[4]))
-        );
+                Integer.parseInt(this.guiReport.getDataRow()[4]));
+        this.dataPanelSong.setSong(song);
+        this.guiSong.setVisible(true);
         this.guiReport.dispose();
     }
 
     @Override
-    //Borrar los throwssssssssssssssssssssssssssssssssss
+
     public void mousePressed(MouseEvent e) {
     }
 
