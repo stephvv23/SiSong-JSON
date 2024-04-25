@@ -17,6 +17,9 @@ public class Album {
     private ArrayList<Artist> artistAlbum;
     private ArrayList<Song> songAlbum;
 
+    public Album() {
+    }
+
     public Album(String title, int releaseDate, ArrayList<Artist> artistAlbum, ArrayList<Song> songAlbum) {
         this.title = title;
         this.releaseDate = releaseDate;
